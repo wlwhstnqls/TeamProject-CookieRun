@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     public float jumpForce = 5f;
     public bool isJumping = false;
+    
+    
     void Start()
     {
       animator =transform.GetComponent<Animator>();
@@ -23,6 +25,16 @@ public class Player : MonoBehaviour
        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             isJumping = true;
+        }
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetMouseButton(1))
+        {
+            animator.SetBool("Isground", true);
+            animator.SetBool("IsWalk", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalk", true);
+            animator.SetBool("Isground", false);
         }
 
     }
