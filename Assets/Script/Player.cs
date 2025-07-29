@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-      animator =transform.GetComponent<Animator>();
+        Camera.main.GetComponent<FollowCamera>().player = transform;
+        animator =transform.GetComponent<Animator>();
         rb = transform.GetComponent<Rigidbody2D>();
     }
 
