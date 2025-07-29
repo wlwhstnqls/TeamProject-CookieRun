@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Animator animator = null;
     Rigidbody2D rb = null;
+    CircleCollider2D circleCollider = null;
 
     public float speed = 5f;
     public bool isDead = false;
