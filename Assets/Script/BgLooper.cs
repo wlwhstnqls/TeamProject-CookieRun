@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +11,21 @@ public class BgLooper : MonoBehaviour
     void Start()
     {
         Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();
-        obstacleLastPosition = obstacles[0].transform.position;
         obstacleCount = obstacles.Length;
+        //obstacleLastPosition = obstacles[0].transform.position;
 
-        for (int i = 0; i < obstacleCount; i++)
+        if (obstacleCount > 0)
         {
-            obstacleLastPosition = obstacles[i].SetRandomPlace(obstacleLastPosition, i);
+            obstacleLastPosition = obstacles[0].transform.position;
+
+            for (int i = 0; i < obstacleCount; i++)
+            {
+                obstacleLastPosition = obstacles[i].SetRandomPlace(obstacleLastPosition, i);
+            }
+        }
+        else
+        {
+            Debug.Log("장애물이 없습니다...");
         }
     }
 
@@ -26,7 +35,7 @@ public class BgLooper : MonoBehaviour
 
         Obstacle obstacle = collision.GetComponent<Obstacle>();
         if (obstacle)
-        { 
+        {
             obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obstacleCount);
         }
     }
