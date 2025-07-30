@@ -6,17 +6,31 @@ public class FollowCamera : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
+<<<<<<< HEAD
     public float smoothSpeed = 5f;
     public Vector2 minBounds;
     public Vector2 maxBounds;
+=======
+    //public float smoothSpeed = 5f;
+    //public Vector2 minBounds;
+    //public Vector2 maxBounds;
+
+
+    
+    // Start is called before the first frame update
+
+>>>>>>> JiHan
 
     private void LateUpdate()
     {
+        
         if (player == null)
         {
             return;
         }
-        transform.position = player.position + offset;
+        transform.position = new Vector3(player.position.x + offset.x, transform.position.y, transform.position.z);
+        
+
 
         Vector3 desiredPosition = player.position + offset;
         desiredPosition.z = transform.position.z;
