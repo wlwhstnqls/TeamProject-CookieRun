@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
 
     public void JumpSound(int idx)
     {
-        if (idx == 1)
+        if (idx == 0)
         {
             AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip); // 첫번째 점프 사운드 재생
