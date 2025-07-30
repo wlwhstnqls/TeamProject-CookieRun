@@ -15,12 +15,12 @@ public class Player : MonoBehaviour
     public bool isJumping = false;
     float time = 0f;
 
-    int JumpCount = 0;
-    int MaxJumpCount = 2;
-
+     int JumpCount = 0;
+     int MaxJumpCount = 2;
 
     void Start()
     {
+       
         Camera.main.GetComponent<FollowCamera>().player = transform;
         animator =transform.GetComponent<Animator>();
         rb = transform.GetComponent<Rigidbody2D>();
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
         if (isJumping && JumpCount < MaxJumpCount)
         {
             velocity.y += jumpForce;
+            AudioManager.Instance.JumpSound(JumpCount);
             JumpCount++;
             isJumping = false;
         }
