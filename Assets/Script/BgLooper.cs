@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BgLooper : MonoBehaviour
 {
-    public int numBgCount = 5;
+    public int numBgCount = 16;
     public int obstacleCount = 0;
     public int numGroundCount = 16;
     public Vector3 obstacleLastPosition = Vector3.zero;
@@ -35,7 +35,7 @@ public class BgLooper : MonoBehaviour
     {
         Debug.Log("Triggered: " + collision.name);
 
-        if (collision.CompareTag("BackGround") ||(collision.CompareTag("Ground")) )
+        if (collision.CompareTag("BackGround") || (collision.CompareTag("Ground")) )
         {
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
