@@ -17,7 +17,8 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        
+        GetComponent<AudioSource>().mute = true;
+        GetComponents<AudioSource>()[1].mute = true; 
     }
 
     // Update is called once per frame
@@ -28,15 +29,18 @@ public class AudioManager : MonoBehaviour
 
     public void JumpSound(int idx)
     {
+        
         if (idx == 0)
         {
+            GetComponent<AudioSource>().mute = false;
             AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip); // 첫번째 점프 사운드 재생
         }
-        //else if (idx == 1)
-        //{
-           // AudioSource audioSource = GetComponents<AudioSource>()[1];
-           // audioSource.PlayOneShot(audioSource.clip); // 두번째 점프 사운드 재생
-        //}
+        else if (idx == 1)
+        {
+            GetComponents<AudioSource>()[1].mute = false;
+            AudioSource audioSource = GetComponents<AudioSource>()[1];
+            audioSource.PlayOneShot(audioSource.clip); // 두번째 점프 사운드 재생
+        }
     }
 }

@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-       
+        
         Camera.main.GetComponent<FollowCamera>().player = transform;
-        animator =transform.GetComponent<Animator>();
-        rb = transform.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
     }
 
