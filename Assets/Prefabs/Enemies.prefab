@@ -203,8 +203,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7446311056787535754}
   - component: {fileID: 6428293606785274296}
-  - component: {fileID: 4881720556832959265}
   - component: {fileID: 4422585068652559655}
+  - component: {fileID: 8284800309401436847}
+  - component: {fileID: 5533711379963215275}
+  - component: {fileID: 2815992549590983751}
+  - component: {fileID: 2932039695979627513}
   m_Layer: 0
   m_Name: Frog
   m_TagString: GroundEnemy
@@ -279,8 +282,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4881720556832959265
-PolygonCollider2D:
+--- !u!114 &4422585068652559655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962565917136307689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fc1aed3fedd0c4db130df5e7b14e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHeight: -0.3
+  maxHeight: 4
+  widthPadding: 3
+  enemySprites: []
+--- !u!61 &8284800309401436847
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -321,16 +340,10 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.28, y: 0.25}
-      - {x: -0.32, y: 0.24}
-      - {x: -0.32, y: -0.32}
-      - {x: 0.32, y: -0.32}
-      - {x: 0.32, y: 0.04}
-      - {x: 0.14, y: 0.25}
-  m_UseDelaunayMesh: 0
---- !u!114 &4422585068652559655
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.64}
+  m_EdgeRadius: 0
+--- !u!114 &5533711379963215275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,10 +352,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 7962565917136307689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fc1aed3fedd0c4db130df5e7b14e47, type: 3}
+  m_Script: {fileID: 11500000, guid: 93b178de09852e840b84228f9aafea56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minHeight: -0.3
-  maxHeight: 4
-  widthPadding: 3
-  enemySprites: []
+  jumpForce: 4
+  isJumping: 0
+--- !u!50 &2815992549590983751
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962565917136307689}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5
+--- !u!95 &2932039695979627513
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962565917136307689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9acf265e0f63bc041a39369b65411baf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
