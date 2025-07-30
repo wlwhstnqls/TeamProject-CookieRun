@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BgLooper : MonoBehaviour
 {
+    public int numBgCount = 5;
     public int obstacleCount = 0;
+    public int numGroundCount = 5;
     public Vector3 obstacleLastPosition = Vector3.zero;
 
     // Start is called before the first frame update
@@ -29,9 +31,29 @@ public class BgLooper : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("triggerd: " + collision.name);
+        Debug.Log("Triggered: " + collision.name);
+
+        if (collision.CompareTag("BackGround"))
+        {
+            float widthOfBgObject = ((BoxCollider2D)collision).size.x * collision.transform.localScale.x;
+            Vector3 pos = collision.transform.position;
+
+            pos.x += widthOfBgObject * numBgCount;
+            collision.transform.position = pos;
+            return;
+        }
+
+        if (collision.CompareTag("Ground"))
+        {
+            float widthOfGround = ((BoxCollider2D)collision).size.x * collision.transform.localScale.x;
+            Vector3 pos = collision.transform.position;
+
+            pos.x += widthOfGround * numGroundCount; // 반복 횟수만큼 x축 이동
+            collision.transform.position = pos;
+            return;
+        }
 
         Obstacle obstacle = collision.GetComponent<Obstacle>();
         if (obstacle)
