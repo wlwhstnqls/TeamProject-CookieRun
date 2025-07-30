@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         }
         time += Time.deltaTime;
 
-        if (time >= 30.0f)
+        if (time >= 10.0f)
         { 
             speed += 1f;
             time = 0f;
