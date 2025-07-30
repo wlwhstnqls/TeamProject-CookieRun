@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     public float jumpForce = 8f;
     public bool isJumping = false;
-    public bool isGrounded = false;
+    
 
     int JumpCount = 0;
     int MaxJumpCount = 2;

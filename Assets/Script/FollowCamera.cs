@@ -11,17 +11,20 @@ public class FollowCamera : MonoBehaviour
     //public Vector2 maxBounds;
 
 
-
+    
     // Start is called before the first frame update
 
 
     private void LateUpdate()
     {
+        
         if (player == null)
         {
             return;
         }
-        transform.position = player.position + offset;
+        transform.position = new Vector3(player.position.x + offset.x, transform.position.y, transform.position.z);
+        
+
 
         //Vector3 desiredPosition = player.position + offset;
         //desiredPosition.z = transform.position.z;
@@ -31,5 +34,5 @@ public class FollowCamera : MonoBehaviour
 
         //transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
     }
-          
+
 }
