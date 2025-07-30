@@ -32,7 +32,7 @@ public class BackgroundFader : MonoBehaviour
                 fadeProgresses[i] -= Time.deltaTime * 0.1f; // 어두워지기
                 fadeProgresses[i] = Mathf.Clamp01(fadeProgresses[i]); // 밝기의 max 1로 설정
 
-                Debug.Log($"[{i}] Fade Progress 내려감 (어두워짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
+                //Debug.Log($"[{i}] Fade Progress 내려감 (어두워짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
 
                 if (fadeProgresses[i] <= 0f)
                 {
@@ -45,7 +45,7 @@ public class BackgroundFader : MonoBehaviour
                 fadeProgresses[i] += Time.deltaTime * 0.1f; // 밝아지기
                 fadeProgresses[i] = Mathf.Clamp01(fadeProgresses[i]);
 
-                Debug.Log($"[{i}] Fade Progress 올라감 (밝아짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
+                //Debug.Log($"[{i}] Fade Progress 올라감 (밝아짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
 
                 if (fadeProgresses[i] >= 1f)
                 {

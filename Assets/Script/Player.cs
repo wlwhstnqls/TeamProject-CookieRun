@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+            if (JumpCount == MaxJumpCount)
+                 return;
             isJumping = true;
 
         }
@@ -44,44 +46,37 @@ public class Player : MonoBehaviour
             animator.SetBool("IsWalk", true);
             animator.SetBool("Isground", false);
         }
-
-        isGrounded = Physics2D.OverlapCircle(transform.position, 0.64f, LayerMask.GetMask("Ground"));
-        Vector2 velocity = rb.velocity;
-        velocity.x = speed;
-        if (isGrounded)
-        {
-            JumpCount = 0;
-        }
-
-        if (isJumping && JumpCount < MaxJumpCount)
-        {
-            velocity.y += jumpForce;
-            isJumping = false;
-            JumpCount++;
-
-        }
-
-      
-        Debug.Log("Is Grounded: " + isGrounded);
-        Debug.Log("Jump Count: " + JumpCount);
-        Debug.Log("Is Jumping: " + isJumping);
-        Debug.Log(JumpCount < MaxJumpCount);
-
-        rb.velocity = velocity;
-
-        float angle = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+               
     }
 
     public void FixedUpdate()
     {
-      
-        
+        if (IsGrounded())
+        {
+            JumpCount = 0;
+        }
+
+        Vector2 velocity = rb.velocity;
+        velocity.x = speed;
+
+        if (isJumping && JumpCount < MaxJumpCount)
+        {
+            velocity.y += jumpForce;
+            JumpCount++;
+            isJumping = false;
+        }
+        Debug.Log("JumpCount: " + JumpCount);
+        rb.velocity = velocity;
+
+        float angle = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
+        transform.rotation = Quaternion.Euler(0, 0, angle);
 
         
-      
-
+        
     }
-
-    
+    bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(transform.position,0.64f, LayerMask.GetMask("Ground"));
+    }
+   
 }
