@@ -6,7 +6,7 @@ public class BgLooper : MonoBehaviour
 {
     public int numBgCount = 5;
     public int obstacleCount = 0;
-    public int numGroundCount = 5;
+    public int numGroundCount = 16;
     public Vector3 obstacleLastPosition = Vector3.zero;
 
     // Start is called before the first frame update
@@ -35,9 +35,9 @@ public class BgLooper : MonoBehaviour
     {
         Debug.Log("Triggered: " + collision.name);
 
-        if (collision.CompareTag("BackGround"))
+        if (collision.CompareTag("BackGround") ||(collision.CompareTag("Ground")) )
         {
-            float widthOfBgObject = ((BoxCollider2D)collision).size.x * collision.transform.localScale.x;
+            float widthOfBgObject = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
 
             pos.x += widthOfBgObject * numBgCount;
@@ -45,15 +45,7 @@ public class BgLooper : MonoBehaviour
             return;
         }
 
-        if (collision.CompareTag("Ground"))
-        {
-            float widthOfGround = ((BoxCollider2D)collision).size.x * collision.transform.localScale.x;
-            Vector3 pos = collision.transform.position;
-
-            pos.x += widthOfGround * numGroundCount; // 반복 횟수만큼 x축 이동
-            collision.transform.position = pos;
-            return;
-        }
+        
 
         Obstacle obstacle = collision.GetComponent<Obstacle>();
         if (obstacle)
