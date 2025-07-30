@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class enemy : MonoBehaviour
 {
     public float minHeight = -0.3f;    // 장애물이 배치될 최소 높이 (바닥 기준)
     public float maxHeight = 4f;       // 장애물이 랜덤으로 배치될 최대 높이
@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour
     private float minWidthPadding = 3f;
     private float maxWidthPadding = 5f;
 
-    public Sprite[] obstacleSprites;   // 장애물 스프라이트 랜덤 적용용
+    public Sprite[] enemySprites;   // 장애물 스프라이트 랜덤 적용용
     private SpriteRenderer sr;
 
     void Awake()
@@ -19,7 +19,7 @@ public class Obstacle : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
+    public Vector3 SetRandomPlace(Vector3 lastPosition, int enemyCount)
     {
         {
             float randomXOffset = Random.Range(minWidthPadding, maxWidthPadding);
@@ -39,9 +39,9 @@ public class Obstacle : MonoBehaviour
             transform.position = newPosition;
 
             // 스프라이트 랜덤 적용 (선택사항)
-            if (obstacleSprites != null && obstacleSprites.Length > 0 && sr != null)
+            if (enemySprites != null && enemySprites.Length > 0 && sr != null)
             {
-                sr.sprite = obstacleSprites[Random.Range(0, obstacleSprites.Length)];
+                sr.sprite = enemySprites[Random.Range(0, enemySprites.Length)];
             }
 
             return newPosition;

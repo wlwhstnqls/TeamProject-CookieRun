@@ -5,12 +5,12 @@ using UnityEngine;
 public class BgLooper : MonoBehaviour
 {
     public int numBgCount = 16;
-    public int obstacleCount = 0;
+    public int enemyCount = 0;
     public int numGroundCount = 16;
-    public Vector3 obstacleLastPosition = Vector3.zero; //마지막 장애물이 위치한 곳의 좌표를 저장
+    public Vector3 enemyLastPosition = Vector3.zero; //마지막 장애물이 위치한 곳의 좌표를 저장
 
-    public Obstacle obstaclePrefab; // 새 장애물 생성용 프리팹
-    private List<Obstacle> activeObstacles = new List<Obstacle>();
+    public enemy enemyPrefab; // 새 장애물 생성용 프리팹
+    private List<enemy> activeenemys = new List<enemy>();
 
     // 난이도(장애물 개수 증가 관련)
     private float difficultyTimer = 0f;
@@ -21,18 +21,18 @@ public class BgLooper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Obstacle[] obstacles = GameObject.FindObjectsOfType<Obstacle>();  // 씬에 있는 모든 Obstacle(장애물) 객체를 찾아 배열에 저장
-        obstacleCount = obstacles.Length;
-        //obstacleLastPosition = obstacles[0].transform.position;
+        enemy[] enemys = GameObject.FindObjectsOfType<enemy>();  // 씬에 있는 모든 enemy(장애물) 객체를 찾아 배열에 저장
+        enemyCount = enemys.Length;
+        //enemyLastPosition = enemys[0].transform.position;
 
-        if (obstacleCount > 0)
+        if (enemyCount > 0)
         {
-            obstacleLastPosition = obstacles[0].transform.position;
+            enemyLastPosition = enemys[0].transform.position;
 
-            for (int i = 0; i < obstacleCount; i++)
+            for (int i = 0; i < enemyCount; i++)
             {
-                obstacleLastPosition = obstacles[i].SetRandomPlace(obstacleLastPosition, i);
-                activeObstacles.Add(obstacles[i]);
+                enemyLastPosition = enemys[i].SetRandomPlace(enemyLastPosition, i);
+                activeenemys.Add(enemys[i]);
             }
         }
         else
@@ -50,7 +50,7 @@ public class BgLooper : MonoBehaviour
         if (difficultyTimer >= spawnInterval)
         {
             difficultyTimer = 0f;
-            SpawnNewObstacle();
+            SpawnNewenemy();
 
             // 난이도 상승 → 스폰 간격 조금씩 감소
             spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
@@ -74,20 +74,20 @@ public class BgLooper : MonoBehaviour
 
 
 
-        Obstacle obstacle = collision.GetComponent<Obstacle>(); // 만약 충돌한 객체가 장애물(Obstacle)이라면
-        if (obstacle)
+        enemy enemy = collision.GetComponent<enemy>(); // 만약 충돌한 객체가 장애물(enemy)이라면
+        if (enemy)
         {
-            obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obstacleCount); // 해당 장애물을 새로운 위치로 이동
+            enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount); // 해당 장애물을 새로운 위치로 이동
         }
     }
-    private void SpawnNewObstacle()
+    private void SpawnNewenemy()
     {
         // 새로운 장애물 생성 및 배치
-        Obstacle newObstacle = Instantiate(obstaclePrefab);
-        obstacleLastPosition = newObstacle.SetRandomPlace(obstacleLastPosition, obstacleCount);
-        activeObstacles.Add(newObstacle);
-        obstacleCount++;
-        Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + obstacleCount);
+        enemy newenemy = Instantiate(enemyPrefab);
+        enemyLastPosition = newenemy.SetRandomPlace(enemyLastPosition, enemyCount);
+        activeenemys.Add(newenemy);
+        enemyCount++;
+        Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + enemyCount);
     }
 
 }
