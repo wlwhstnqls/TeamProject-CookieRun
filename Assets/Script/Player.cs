@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     public float jumpForce = 8f;
     public bool isJumping = false;
-    
+    float time = 0f;
 
     int JumpCount = 0;
     int MaxJumpCount = 2;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         Camera.main.GetComponent<FollowCamera>().player = transform;
         animator =transform.GetComponent<Animator>();
         rb = transform.GetComponent<Rigidbody2D>();
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (JumpCount == MaxJumpCount)
-                 return;
+                return;
             isJumping = true;
 
         }
@@ -46,9 +48,16 @@ public class Player : MonoBehaviour
             animator.SetBool("IsWalk", true);
             animator.SetBool("Isground", false);
         }
-               
-    }
+        time += Time.deltaTime;
 
+        if (time >= 30.0f)
+        { 
+            speed += 1f;
+            time = 0f;
+            return;
+        }
+
+    }
     public void FixedUpdate()
     {
         if (IsGrounded())
@@ -70,13 +79,12 @@ public class Player : MonoBehaviour
 
         float angle = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        
-        
+           
     }
     bool IsGrounded()
     {
         return Physics2D.OverlapCircle(transform.position,0.64f, LayerMask.GetMask("Ground"));
-    }
-   
+    }  
+
+    
 }
