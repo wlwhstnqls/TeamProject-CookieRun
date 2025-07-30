@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public float minHeight = 0f;       // 장애물이 배치될 최소 높이 (바닥 기준)
-    public float maxHeight = 2f;       // 장애물이 랜덤으로 배치될 최대 높이
-    public float widthPadding = 4f;    // 장애물 간격 (x축 거리)
+    public float minHeight = -0.3f;    // 장애물이 배치될 최소 높이 (바닥 기준)
+    public float maxHeight = 4f;       // 장애물이 랜덤으로 배치될 최대 높이
+    public float widthPadding = 3f;    // 장애물 간격 (x축 거리)
+
+    private float minWidthPadding = 3f;
+    private float maxWidthPadding = 5f;
 
     public Sprite[] obstacleSprites;   // 장애물 스프라이트 랜덤 적용용
     private SpriteRenderer sr;
@@ -18,21 +21,30 @@ public class Obstacle : MonoBehaviour
 
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     {
-        // 높이를 랜덤으로 설정 (지형 변화를 주기 위함)
-        float randomHeight = Random.Range(minHeight, maxHeight);
-
-        // 장애물 새 위치
-        Vector3 newPosition = lastPosition + new Vector3(widthPadding, randomHeight, 0);
-
-        // 장애물 위치 적용
-        transform.position = newPosition;
-
-        // 랜덤 스프라이트 적용 (선택 사항)
-        if (obstacleSprites != null && obstacleSprites.Length > 0 && sr != null)
         {
-            sr.sprite = obstacleSprites[Random.Range(0, obstacleSprites.Length)];
-        }
+            float randomXOffset = Random.Range(minWidthPadding, maxWidthPadding);
+            float randomY = minHeight;
 
-        return newPosition;
+            // 태그에 따라 y 위치 다르게 설정
+            if (CompareTag("SkyEnemy"))
+            {
+                randomY = Random.Range(1.5f, maxHeight);  // 하늘 적은 높이 랜덤
+            }
+            else if (CompareTag("GroundEnemy"))
+            {
+                randomY = minHeight = -0.25f;                      // 지상 적은 y=0.3 고정 그라운드 레벨과 동일값 0.3f
+            }
+
+            Vector3 newPosition = new Vector3(lastPosition.x + randomXOffset, randomY, 0);
+            transform.position = newPosition;
+
+            // 스프라이트 랜덤 적용 (선택사항)
+            if (obstacleSprites != null && obstacleSprites.Length > 0 && sr != null)
+            {
+                sr.sprite = obstacleSprites[Random.Range(0, obstacleSprites.Length)];
+            }
+
+            return newPosition;
+        }
     }
 }
