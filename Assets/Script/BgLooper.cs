@@ -18,6 +18,11 @@ public class BgLooper : MonoBehaviour
     public float minSpawnInterval = 2f;        // 최소 간격
     public float intervalDecreaseRate = 0.05f; // 시간이 지날수록 간격 감소
 
+    public ItemGem gemPrefab;
+    private List<ItemGem> gemPool = new List<ItemGem>();
+    private Vector3 gemLastPosition = Vector3.zero;
+    public int initialGemCount = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +43,14 @@ public class BgLooper : MonoBehaviour
         else
         {
             Debug.Log("장애물이 없습니다..."); // 장애물이없으면 Null값에러떠서 실행안됨!(게임멈춤현상)
+        }
+
+        // 보석 초기화
+        for (int i = 0; i < initialGemCount; i++)
+        {
+            ItemGem gem = Instantiate(gemPrefab);
+            gem.gameObject.SetActive(false); // 비활성화 상태로 시작
+            gemPool.Add(gem);
         }
     }
 
@@ -60,7 +73,6 @@ public class BgLooper : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
 
         if (collision.CompareTag("BackGround") || (collision.CompareTag("Ground")))   // 충돌한 객체가 "BackGround" 또는 "Ground" 태그를 가지고 있다면
         {
@@ -71,13 +83,27 @@ public class BgLooper : MonoBehaviour
             collision.transform.position = pos;
             return;
         }
-
-
+        if (collision.CompareTag("Gem"))
+        {
+            collision.gameObject.SetActive(true); // 활성화
+        }
 
         enemy enemy = collision.GetComponent<enemy>(); // 만약 충돌한 객체가 장애물(enemy)이라면
         if (enemy)
         {
             enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount); // 해당 장애물을 새로운 위치로 이동
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Gem"))
+        {
+            ItemGem gem = collision.GetComponent<ItemGem>();
+            if (gem != null)
+            {
+                gemLastPosition = gem.SetRandomPlace(gemLastPosition);
+            }
         }
     }
     private void SpawnNewenemy()
