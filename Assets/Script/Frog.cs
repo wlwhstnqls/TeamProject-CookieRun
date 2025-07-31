@@ -12,15 +12,21 @@ public class Frog : MonoBehaviour
     public bool isJumping = false;
     float time = 0f;
     float RandomJump = 0f;
+   
+
+  
+   
     // Start is called before the first frame update
+
+  
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
-        RandomJump = Random.Range(1.0f, 5.0f); // 1초에서 3초 사이의 랜덤 시간 설정
+        RandomJump = Random.Range(1.0f, 5.0f); 
     }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -52,6 +58,7 @@ public class Frog : MonoBehaviour
         
         rb.velocity = velocity;
     }
+
             
 
 

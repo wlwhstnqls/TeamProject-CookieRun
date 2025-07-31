@@ -11,6 +11,7 @@ public class BgLooper : MonoBehaviour
 
     public enemy enemyPrefab; // 새 장애물 생성용 프리팹
     private List<enemy> activeenemys = new List<enemy>();
+    public enemy[] enemys; // 씬에 있는 장애물(enemy) 객체들을 저장할 배열
 
     // 난이도(장애물 개수 증가 관련)
     private float difficultyTimer = 0f;
@@ -21,7 +22,8 @@ public class BgLooper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy[] enemys = GameObject.FindObjectsOfType<enemy>();  // 씬에 있는 모든 enemy(장애물) 객체를 찾아 배열에 저장
+        //enemy[] enemys = GameObject.FindObjectsOfType<enemy>();  // 씬에 있는 모든 enemy(장애물) 객체를 찾아 배열에 저장
+
         enemyCount = enemys.Length;
         //enemyLastPosition = enemys[0].transform.position;
 
@@ -74,7 +76,7 @@ public class BgLooper : MonoBehaviour
 
 
 
-        enemy enemy = collision.GetComponent<enemy>(); // 만약 충돌한 객체가 장애물(enemy)이라면
+        enemy enemy = collision.GetComponentInParent<enemy>(); // 충돌한 객체에서 enemy 컴포넌트를 찾음
         if (enemy)
         {
             enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount); // 해당 장애물을 새로운 위치로 이동
