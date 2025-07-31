@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
             JumpCount++;
             isJumping = false;
         }
-        Debug.Log("JumpCount: " + JumpCount);
+        //Debug.Log("JumpCount: " + JumpCount);
         rb.velocity = velocity;
 
         float angle = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);

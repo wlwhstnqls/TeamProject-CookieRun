@@ -29,6 +29,14 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int score)
     {
         currentScore += score;
-        Debug.Log("Score: " + currentScore);
+        Debug.Log($"[È¹µæ] +{score}Á¡ | ÇöÀç Á¡¼ö: {currentScore}");
+    }
+    public int GetScore()
+    {
+        return currentScore;
+    }
+    public void ResetScore()
+    {
+        currentScore = 0;
     }
 }

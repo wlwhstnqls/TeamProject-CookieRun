@@ -7,28 +7,25 @@ public class BgLooper : MonoBehaviour
     public int numBgCount = 16;
     public int enemyCount = 0;
     public int numGroundCount = 16;
-    public Vector3 enemyLastPosition = Vector3.zero; //마지막 장애물이 위치한 곳의 좌표를 저장
+    public Vector3 enemyLastPosition = Vector3.zero;
 
-    public enemy enemyPrefab; // 새 장애물 생성용 프리팹
+    public Vector3 gemLastPosition = Vector3.zero;
+    public float gemDistance = 5f;
+
+    public enemy enemyPrefab;
     private List<enemy> activeenemys = new List<enemy>();
 
-    // 난이도(장애물 개수 증가 관련)
     private float difficultyTimer = 0f;
-    public float spawnInterval = 5f; // 몇 초마다 새로운 장애물 추가
-    public float minSpawnInterval = 2f;        // 최소 간격
-    public float intervalDecreaseRate = 0.05f; // 시간이 지날수록 간격 감소
+    public float spawnInterval = 5f;
+    public float minSpawnInterval = 2f;
+    public float intervalDecreaseRate = 0.05f;
 
-    public ItemGem gemPrefab;
-    private List<ItemGem> gemPool = new List<ItemGem>();
-    private Vector3 gemLastPosition = Vector3.zero;
-    public int initialGemCount = 10;
+    public Transform player;
 
-    // Start is called before the first frame update
     void Start()
     {
-        enemy[] enemys = GameObject.FindObjectsOfType<enemy>();  // 씬에 있는 모든 enemy(장애물) 객체를 찾아 배열에 저장
+        enemy[] enemys = GameObject.FindObjectsOfType<enemy>();
         enemyCount = enemys.Length;
-        //enemyLastPosition = enemys[0].transform.position;
 
         if (enemyCount > 0)
         {
@@ -42,84 +39,81 @@ public class BgLooper : MonoBehaviour
         }
         else
         {
-            Debug.Log("장애물이 없습니다..."); // 장애물이없으면 Null값에러떠서 실행안됨!(게임멈춤현상)
+            Debug.Log("장애물이 없습니다...");
         }
+        if (player != null)
+            gemLastPosition = player.position + new Vector3(10f, 0f, 0f);
 
-        // 보석 초기화
-        for (int i = 0; i < initialGemCount; i++)
+        // 씬에 있는 보석 모두 처음 재배치
+        ItemGem[] gems = GameObject.FindObjectsOfType<ItemGem>();
+        foreach (var gem in gems)
         {
-            if (gemPrefab == null)
-            {
-                Debug.LogWarning("ItemGem 프리팹이 할당되지 않았습니다. Gem 생성은 건너뜁니다.");
-                continue; // 작동은되게 임시사용
-
-                ItemGem gem = Instantiate(gemPrefab);
-                gem.gameObject.SetActive(false); // 비활성화 상태로 시작
-                gemPool.Add(gem);
-            }
-        }
-
-        void Update()
-        {
-            // 난이도 시간 누적
-            difficultyTimer += Time.deltaTime;
-
-            // 일정 시간마다 새로운 장애물 생성
-            if (difficultyTimer >= spawnInterval)
-            {
-                difficultyTimer = 0f;
-                SpawnNewenemy();
-
-                // 난이도 상승 → 스폰 간격 조금씩 감소
-                spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
-            }
+            gemLastPosition = RepositionGem(gem);
         }
     }
 
+    void Update()
+    {
+        difficultyTimer += Time.deltaTime;
+
+        if (difficultyTimer >= spawnInterval)
+        {
+            difficultyTimer = 0f;
+            SpawnNewenemy();
+
+            spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
+        }
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.CompareTag("BackGround") || (collision.CompareTag("Ground")))   // 충돌한 객체가 "BackGround" 또는 "Ground" 태그를 가지고 있다면
+        if (collision.CompareTag("BackGround") || collision.CompareTag("Ground"))
         {
-            float widthOfBgObject = ((BoxCollider2D)collision).size.x; // 충돌한 오브젝트의 가로 길이(BoxCollider2D 기준)를 구함
+            float widthOfBgObject = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
-
             pos.x += widthOfBgObject * numBgCount;
             collision.transform.position = pos;
             return;
         }
-        if (collision.CompareTag("Gem"))
-        {
-            collision.gameObject.SetActive(true); // 활성화
-        }
 
-        enemy enemy = collision.GetComponent<enemy>(); // 만약 충돌한 객체가 장애물(enemy)이라면
+        enemy enemy = collision.GetComponent<enemy>();
         if (enemy)
         {
-            enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount); // 해당 장애물을 새로운 위치로 이동
+            enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount);
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
         if (collision.CompareTag("Gem"))
         {
             ItemGem gem = collision.GetComponent<ItemGem>();
             if (gem != null)
             {
-                gemLastPosition = gem.SetRandomPlace(gemLastPosition);
+                // 보석을 마지막 위치에서 일정 거리 앞으로 이동
+                Vector3 newPos = new Vector3(gemLastPosition.x + gemDistance, gem.transform.position.y, gem.transform.position.z);
+                gem.transform.position = newPos;
+
+                // 새 위치를 마지막 위치로 업데이트
+                gemLastPosition = newPos;
             }
         }
     }
+
     private void SpawnNewenemy()
     {
-        // 새로운 장애물 생성 및 배치
+        if (enemyPrefab == null)
+        {
+            Debug.LogWarning("enemyPrefab이 할당되지 않아 장애물을 생성하지 않습니다.");
+            return; // 생성하지 않고 그냥 종료
+        }
         enemy newenemy = Instantiate(enemyPrefab);
         enemyLastPosition = newenemy.SetRandomPlace(enemyLastPosition, enemyCount);
         activeenemys.Add(newenemy);
         enemyCount++;
         Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + enemyCount);
     }
-
+    public Vector3 RepositionGem(ItemGem gem)
+    {
+        Vector3 newPos = new Vector3(gemLastPosition.x + gemDistance, Random.Range(gem.minHeight, gem.maxHeight), 0f);
+        Vector3 updatedPos = gem.SetRandomPlace(newPos);
+        return updatedPos;
+    }
 }
