@@ -42,7 +42,7 @@ public class BackgroundFader : MonoBehaviour
         {
             if (isFadingOut[i])
             {
-                fadeProgresses[i] -= Time.deltaTime * 0.1f; // 어두워지기
+                fadeProgresses[i] -= Time.deltaTime * 0.01f; // 어두워지기
                 fadeProgresses[i] = Mathf.Clamp01(fadeProgresses[i]); // 밝기의 max 1로 설정
 
                 //Debug.Log($"[{i}] Fade Progress 내려감 (어두워짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
@@ -55,7 +55,7 @@ public class BackgroundFader : MonoBehaviour
             }
             else
             {
-                fadeProgresses[i] += Time.deltaTime * 0.1f; // 밝아지기
+                fadeProgresses[i] += Time.deltaTime * 0.01f; // 밝아지기
                 fadeProgresses[i] = Mathf.Clamp01(fadeProgresses[i]);
 
                 //Debug.Log($"[{i}] Fade Progress 올라감 (밝아짐): {fadeProgresses[i]:F3}, nightColor: {nightColor}");
@@ -75,7 +75,7 @@ public class BackgroundFader : MonoBehaviour
         {
             if (cameraFadingOut)
             {
-                cameraFadeProgress -= Time.deltaTime * 0.1f;
+                cameraFadeProgress -= Time.deltaTime * 0.01f;
                 cameraFadeProgress = Mathf.Clamp01(cameraFadeProgress);
 
                 if (cameraFadeProgress <= 0f)
@@ -83,7 +83,7 @@ public class BackgroundFader : MonoBehaviour
             }
             else
             {
-                cameraFadeProgress += Time.deltaTime * 0.1f;
+                cameraFadeProgress += Time.deltaTime * 0.01f;
                 cameraFadeProgress = Mathf.Clamp01(cameraFadeProgress);
 
                 if (cameraFadeProgress >= 1f)

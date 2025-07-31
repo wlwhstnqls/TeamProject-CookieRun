@@ -11,7 +11,7 @@ public class BgLooper : MonoBehaviour
 
     public static BgLooper Instance;
     public Vector3 gemLastPosition = Vector3.zero;
-    public float gemDistance = 5f;
+    public float gemDistance = 4f;
 
     public enemy enemyPrefab;
     private List<enemy> activeenemys = new List<enemy>();
@@ -49,7 +49,7 @@ public class BgLooper : MonoBehaviour
             Debug.Log("장애물이 없습니다...");
         }
         if (player != null)
-            gemLastPosition = player.position + new Vector3(10f, 0f, 0f);
+            gemLastPosition = player.position + new Vector3(4f, 0f, 0f);
 
         // 씬에 있는 보석 모두 처음 재배치
         ItemGem[] gems = GameObject.FindObjectsOfType<ItemGem>();

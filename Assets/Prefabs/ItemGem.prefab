@@ -53,7 +53,12 @@ MonoBehaviour:
   gemSprites:
   - {fileID: 21300000, guid: c9fb5a740d9685641bb1455987d24b5f, type: 3}
   - {fileID: 21300000, guid: 257b34b129656ce4e931c0a7f79e423c, type: 3}
+  - {fileID: 21300000, guid: 931d54fcc0e4dcc4e8c51756a9b019cf, type: 3}
+  - {fileID: 21300000, guid: 02466bd63819ea44c855b54de276fb71, type: 3}
+  - {fileID: 21300000, guid: 8c01a69efe5e41941bec8dbe1106c944, type: 3}
+  - {fileID: 21300000, guid: 113b1b58614430148a319069124fcfa9, type: 3}
   gemScore: 0
+  gemType: 0
 --- !u!58 &381887207793303001
 CircleCollider2D:
   m_ObjectHideFlags: 0
