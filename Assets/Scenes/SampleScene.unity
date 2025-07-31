@@ -2402,6 +2402,8 @@ MonoBehaviour:
   audioClip:
   - {fileID: 8300000, guid: 31296e995ef138d4a99b76e636ee8196, type: 3}
   - {fileID: 8300000, guid: 652bc90153add1746ac51a2b67e269f4, type: 3}
+  - {fileID: 8300000, guid: 5d0501c47f6762e43913098215bd72c3, type: 3}
+  - {fileID: 8300000, guid: ef217441278cb5c4eb9cda9bb481a368, type: 3}
 --- !u!82 &476795799
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6675,7 +6677,7 @@ Transform:
   m_GameObject: {fileID: 1109818726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

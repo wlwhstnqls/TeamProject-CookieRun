@@ -75,6 +75,7 @@ public class ItemGem : MonoBehaviour
             case GemType.Green:
             case GemType.Blue:
                 ScoreManager.Instance?.AddScore(gemScore);
+                AudioManager.Instance?.PlayGemSound();
                 break;
 
             case GemType.Star:
@@ -82,12 +83,14 @@ public class ItemGem : MonoBehaviour
                 if (player != null)
                 {
                     Debug.Log("무적 스타 획득!");
+                    AudioManager.Instance?.PlayStarSound();
                 }
                 break;
 
             case GemType.Heart:
                 // 목숨 추가 처리 예정
                 Debug.Log("하트 획득! (생명 +1)");
+                AudioManager.Instance?.PlayStarSound();
                 break;
         }
 
