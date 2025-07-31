@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemGem : MonoBehaviour
 {
-    public float minHeight = 0f;       // ÃÖ¼Ò y À§Ä¡
-    public float maxHeight = 2f;       // ÃÖ´ë y À§Ä¡
-    public float distance = 2f;        // ÀÌÀü ¿ÀºêÁ§Æ®º¸´Ù ¾ó¸¶³ª ¶³¾îÁúÁö
+    public float minHeight = 0f;       // ìµœì†Œ y ìœ„ì¹˜
+    public float maxHeight = 2f;       // ìµœëŒ€ y ìœ„ì¹˜
+    public float distance = 5f;        // ì´ì „ ì˜¤ë¸Œì íŠ¸ë³´ë‹¤ ì–¼ë§ˆë‚˜ ë–¨ì–´ì§ˆì§€
 
-    public Sprite[] gemSprites;       // 0 = Yellow, 1 = Red Ãß°¡ÇÏ¸é 2 = Green ÀÌ·±½Ä..
+    public Sprite[] gemSprites;       // 0 = Yellow, 1 = Red ë“±
     private SpriteRenderer sr;
 
-    public int gemScore;  // º¸¼® Á¡¼ö (1Á¡, 5Á¡)
+    public int gemScore;  // ë³´ì„ ì ìˆ˜ (1ì , 5ì )
 
     private void Awake()
     {
@@ -24,28 +24,29 @@ public class ItemGem : MonoBehaviour
         Vector3 newPosition = new Vector3(lastPosition.x + distance, randomHeight, 0f);
         transform.position = newPosition;
 
-        // ·£´ı È®·ü ¼³Á¤: 0~9 ¡æ 0~8 = Yellow(90%), 9 = Red(10%) ±×¸° µî ´õ Ãß°¡½Ã Á¶ÀıÇÏ±â max¸¦´Ã¸®´ø..(°³Ã¤¼ö)
         int rand = Random.Range(0, 10);
         if (rand == 9 && gemSprites.Length > 1)
         {
-            sr.sprite = gemSprites[1];  // ·¹µå (10%)
+            sr.sprite = gemSprites[1];  // ë ˆë“œ (10%)
             gemScore = 5;
         }
         else
         {
-            sr.sprite = gemSprites[0];  // ¿»·Î¿ì (90%)
+            sr.sprite = gemSprites[0];  // ì˜ë¡œìš° (90%)
             gemScore = 1;
         }
 
-        gameObject.SetActive(true); // ÀçÈ°¼ºÈ­ ½Ã ÇÊ¿ä
         return newPosition;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(false); // ºñÈ°¼ºÈ­ ¡æ BgLooper µî¿¡¼­ Àç¹èÄ¡ °¡´É
-            GameManager.Instance?.AddScore(gemScore);
+            ScoreManager.Instance?.AddScore(gemScore);
+
+            // BgLooperê°€ ì¬ë°°ì¹˜ í•˜ë„ë¡ ìš”ì²­
+            BgLooper.Instance?.HandleGemRespawn(this);
         }
     }
 }
