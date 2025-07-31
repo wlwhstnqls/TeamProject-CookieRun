@@ -48,25 +48,31 @@ public class BgLooper : MonoBehaviour
         // 보석 초기화
         for (int i = 0; i < initialGemCount; i++)
         {
-            ItemGem gem = Instantiate(gemPrefab);
-            gem.gameObject.SetActive(false); // 비활성화 상태로 시작
-            gemPool.Add(gem);
+            if (gemPrefab == null)
+            {
+                Debug.LogWarning("ItemGem 프리팹이 할당되지 않았습니다. Gem 생성은 건너뜁니다.");
+                continue; // 작동은되게 임시사용
+
+                ItemGem gem = Instantiate(gemPrefab);
+                gem.gameObject.SetActive(false); // 비활성화 상태로 시작
+                gemPool.Add(gem);
+            }
         }
-    }
 
-    void Update()
-    {
-        // 난이도 시간 누적
-        difficultyTimer += Time.deltaTime;
-
-        // 일정 시간마다 새로운 장애물 생성
-        if (difficultyTimer >= spawnInterval)
+        void Update()
         {
-            difficultyTimer = 0f;
-            SpawnNewenemy();
+            // 난이도 시간 누적
+            difficultyTimer += Time.deltaTime;
 
-            // 난이도 상승 → 스폰 간격 조금씩 감소
-            spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
+            // 일정 시간마다 새로운 장애물 생성
+            if (difficultyTimer >= spawnInterval)
+            {
+                difficultyTimer = 0f;
+                SpawnNewenemy();
+
+                // 난이도 상승 → 스폰 간격 조금씩 감소
+                spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
+            }
         }
     }
 
