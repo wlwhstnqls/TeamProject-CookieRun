@@ -11,6 +11,7 @@ public class Frog : MonoBehaviour
     public float jumpForce = 4f;
     public bool isJumping = false;
     float time = 0f;
+    float RandomJump = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Frog : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         Time.timeScale = 1f;
+        RandomJump = Random.Range(1.0f, 3.0f); // 1초에서 3초 사이의 랜덤 시간 설정
     }
 
     // Update is called once per frame
@@ -25,21 +27,22 @@ public class Frog : MonoBehaviour
     {
        
         time += Time.deltaTime;
-        if (time >= 3.0f)
+        if (time >= RandomJump)
         {
             isJumping = true;
-            if(isJumping == true)
-            {
-                animator.SetBool("IsJump", true);
-            }
-            else
-            {
-                animator.SetBool("IsJump", false);
-            }
+                      
+            animator.SetTrigger("JumpTrig");
+                          
+                         
             time = 0f;
+                        
             return;
         }
-     
+        else
+        {
+            animator.SetTrigger("IdleTrig");
+        }
+
             Vector2 velocity = rb.velocity;
 
         if (isJumping == true)
