@@ -84,7 +84,7 @@ public class BgLooper : MonoBehaviour
             return;
         }
 
-        enemy enemy = collision.GetComponent<enemy>();
+        enemy enemy = collision.GetComponentInParent<enemy>();
         if (enemy) 
         {
             Debug.Log("장애물 충돌 감지: " + enemy.name);
