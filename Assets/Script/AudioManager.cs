@@ -26,9 +26,6 @@ public class AudioManager : MonoBehaviour
    
     public void JumpSound(int idx)
     {
-
         audioSource.PlayOneShot(audioClip[idx]);
-
-
     }
 }
