@@ -46,5 +46,7 @@ public class enemy : MonoBehaviour
 
             return newPosition;
         }
+
     }
+   
 }

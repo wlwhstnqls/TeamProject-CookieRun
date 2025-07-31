@@ -74,6 +74,7 @@ public class BgLooper : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("충돌 감지: " + collision.name);
         if (collision.CompareTag("BackGround") || collision.CompareTag("Ground"))
         {
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
@@ -84,8 +85,9 @@ public class BgLooper : MonoBehaviour
         }
 
         enemy enemy = collision.GetComponent<enemy>();
-        if (enemy)
+        if (enemy) 
         {
+            Debug.Log("장애물 충돌 감지: " + enemy.name);
             enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount);
         }
 
