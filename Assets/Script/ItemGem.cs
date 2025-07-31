@@ -6,7 +6,7 @@ public class ItemGem : MonoBehaviour
 {
     public float minHeight = 0f;       // 최소 y 위치
     public float maxHeight = 2f;       // 최대 y 위치
-    public float distance = 10f;        // 이전 오브젝트보다 얼마나 떨어질지
+    public float distance = 5f;        // 이전 오브젝트보다 얼마나 떨어질지
 
     public Sprite[] gemSprites;       // 0 = Yellow, 1 = Red 등
     private SpriteRenderer sr;
@@ -44,8 +44,9 @@ public class ItemGem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ScoreManager.Instance?.AddScore(gemScore);
-            // 즉시 재배치 (현재 위치 기준)
-            SetRandomPlace(transform.position);
+
+            // BgLooper가 재배치 하도록 요청
+            BgLooper.Instance?.HandleGemRespawn(this);
         }
     }
 }

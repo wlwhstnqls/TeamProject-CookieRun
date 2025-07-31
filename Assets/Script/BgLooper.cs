@@ -9,6 +9,7 @@ public class BgLooper : MonoBehaviour
     public int numGroundCount = 16;
     public Vector3 enemyLastPosition = Vector3.zero;
 
+    public static BgLooper Instance;
     public Vector3 gemLastPosition = Vector3.zero;
     public float gemDistance = 5f;
 
@@ -21,6 +22,12 @@ public class BgLooper : MonoBehaviour
     public float intervalDecreaseRate = 0.05f;
 
     public Transform player;
+
+    private void Awake()
+    {
+        Instance = this; //자기자신인스턴스화
+    }
+
 
     void Start()
     {
@@ -115,5 +122,9 @@ public class BgLooper : MonoBehaviour
         Vector3 newPos = new Vector3(gemLastPosition.x + gemDistance, Random.Range(gem.minHeight, gem.maxHeight), 0f);
         Vector3 updatedPos = gem.SetRandomPlace(newPos);
         return updatedPos;
+    }
+    public void HandleGemRespawn(ItemGem gem) //아이템잼의 먹음효과를 대신처리해주기
+    {
+        gemLastPosition = gem.SetRandomPlace(gemLastPosition);
     }
 }
