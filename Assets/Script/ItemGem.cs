@@ -30,7 +30,7 @@ public class ItemGem : MonoBehaviour
 
         if (rand < 0.1f)
         {
-            SetGem(GemType.Heart, 0);
+            SetGem(GemType.Yellow, 1); //test를 위해 Heart->Yellow로 바꿔둔상태 테스트끝나면 확률 및 원복
         }
         else if (rand < 0.5f)
         {
@@ -50,7 +50,7 @@ public class ItemGem : MonoBehaviour
         }
         else
         {
-            SetGem(GemType.Yellow, 1);
+            SetGem(GemType.Heart, 0);
         }
 
         return newPosition;
