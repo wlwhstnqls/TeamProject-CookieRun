@@ -34,3 +34,15 @@ BgLooper라는 가상의 막대를 통해 맵과 충돌시 맵의 끝으로 이�
 https://www.fesliyanstudios.com/play-music/6393
 “Free License with Attribution”
 
+1. ScoreManager.cs
+   - 게임 점수를 관리 (추가, 조회, 초기화)
+   - 점수가 변할 때 UIManager를 통해 화면에 갱신되도록 구현 
+   *  수정내용 UIManager.Instance.UpdateScore(currentScore);  
+      변경내용 if (UIManager.Instance != null)  UIManager.Instance.UpdateScore(currentScore);   
+      null 체크가 없이 호출 시 매서드나 속성에 오류가 생길수있다.
+
+2. UIManager.cs 
+   - UI 업데이트 
+   현재 점수를 표시할 UI 텍스트 
+   - 클릭 시 씬을 리로드(게임 재시작)하는 기능 구현
+   클릭하면 재시작 메시지를 표시할 UI 텍스트
