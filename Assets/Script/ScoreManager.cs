@@ -30,7 +30,6 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += score;
         Debug.Log($"[획득] +{score}점 | 현재 점수: {currentScore}");
-        UIManager.Instance.UpdateScore(currentScore); // 점수 UI 업데이트 호출
     }
     public int GetScore()
     {
