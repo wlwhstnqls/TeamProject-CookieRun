@@ -81,6 +81,8 @@ public class Player : MonoBehaviour
             {
                 invincible = false;
                 Debug.Log("무적 해제됨 (invincible = false)");
+
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
             }
         }
     }
@@ -159,6 +161,8 @@ public class Player : MonoBehaviour
         Debug.Log("무적 시작됨 (invincible = true)");
         // 이펙트나 깜빡임 애니메이션 추가해야함 
         // animator.SetBool("IsGodMode", true); 필요시 활성화
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
     }
 
     private void Die() // 플레이어 사망 처리 함수

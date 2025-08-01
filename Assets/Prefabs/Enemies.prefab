@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9174112277288552066}
   - component: {fileID: 999269741209761080}
   - component: {fileID: 5471025142299965919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,6 @@ MonoBehaviour:
   minHeight: -0.3
   maxHeight: 4
   widthPadding: 3
-  enemySprites: []
 --- !u!1 &1482871414059888778
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +84,7 @@ GameObject:
   - component: {fileID: 15577458106959716}
   - component: {fileID: 9155657705479250092}
   - component: {fileID: 6624177731060564402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bee
   m_TagString: SkyEnemy
   m_Icon: {fileID: 0}
@@ -216,6 +215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0f001a46f304744b70a89f153239e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minHeight: -0.3
+  maxHeight: 4
+  widthPadding: 3
+  enemySprites: []
 --- !u!50 &6624177731060564402
 Rigidbody2D:
   serializedVersion: 4
@@ -257,7 +260,7 @@ GameObject:
   - component: {fileID: 5533711379963215275}
   - component: {fileID: 2815992549590983751}
   - component: {fileID: 2932039695979627513}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Frog
   m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
