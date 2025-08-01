@@ -20,10 +20,11 @@ public class Player : MonoBehaviour
     public int life = 3; //해당 라이프 3개
     public Hearts heartsUI; //하트 UI 스크립트 연결(생명 수 표시용)
 
-    public bool godMode = false; // 테스트 끝나고 꼭 private으로 바꿔주세요!!
-    private float godModeDuration = 2.0f; //2초무적 테스트해보고 늘려도됩니다.
-    private float godModeTimer = 0f;
+    public bool invincible = false; // 무적 상태 테스트끝나고 private로 바꿔주세요
+    private float invincibleDuration = 2.0f; // 무적 지속시간
+    private float invincibleTimer = 0f;
 
+    public bool GodMode = false; // Inspector 체크박스 on시 영구무적
 
     int JumpCount = 0;
     int MaxJumpCount = 2;
@@ -67,20 +68,23 @@ public class Player : MonoBehaviour
             time = 0f;
             return;
         }
-        // GodMode 타이머
-        if (godMode)
+        if (GodMode)
         {
-            // 시간이 다 되면 무적 해제
-            godModeTimer -= Time.deltaTime;
-            if (godModeTimer <= 0f)
+            invincible = true;
+            return; // 테스트 중에는 아래 로직 무시
+        }
+        // 무적 타이머
+        if (invincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer <= 0f)
             {
-                godMode = false;
-                Debug.Log("GodMode 해제됨");
+                invincible = false;
+                Debug.Log("무적 해제됨 (invincible = false)");
             }
         }
-
-
     }
+
     public void FixedUpdate()
     {
         if (IsGrounded())
@@ -115,9 +119,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // 무적 상태면 충돌 무시 
-            if (godMode)
+            if (invincible)
             {
-                Debug.Log("GodMode 활성화 중, 장애물 통과!");
+                Debug.Log("무적 활성화 중, 장애물 통과!");
                 return; 
             }
 
@@ -131,7 +135,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                StartGodMode(); // 무적 시작
+                StartInvincible(); // 무적 시작
             }
         }
     }
@@ -147,12 +151,12 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void StartGodMode() // 무적 상태 시작 함수
+    public void StartInvincible() // 무적 시작 함수
     {
-        godMode = true;
-        godModeTimer = godModeDuration;
+        invincible = true;
+        invincibleTimer = invincibleDuration;
 
-        Debug.Log("GodMode 활성화됨 (무적 상태)");
+        Debug.Log("무적 시작됨 (invincible = true)");
         // 이펙트나 깜빡임 애니메이션 추가해야함 
         // animator.SetBool("IsGodMode", true); 필요시 활성화
     }

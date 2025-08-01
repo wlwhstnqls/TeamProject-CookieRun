@@ -83,7 +83,7 @@ public class ItemGem : MonoBehaviour
                 if (player != null)
                 {
                     Debug.Log("무적 스타 획득!");
-                    player.StartGodMode();
+                    player.StartInvincible();
                     AudioManager.Instance?.PlayStarSound();
                 }
                 break;
