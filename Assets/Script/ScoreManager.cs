@@ -39,11 +39,5 @@ public class ScoreManager : MonoBehaviour
         if (UIManager.Instance != null)
             UIManager.Instance.UpdateScore(currentScore);
     }
-    public void SaveScore()
-    {
-        PlayerPrefs.SetInt("Score", currentScore);
-        PlayerPrefs.Save();
-        Debug.Log("점수저장중");
-    }
-
+  
 }
