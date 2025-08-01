@@ -33,4 +33,15 @@ Audio Manager를 생성 Audio Souce 컴퍼넌트를 붙이고 배열을 사용�
 애니메이션으로 움직음을 제어하다보니 부모가 필요해서 Bee를 realBee의 자식으로 넣어놓았습니다.
 그러다보니 GetComponent가 아닌 GetComponentInparet를 써야한다는걸 알았습니다.
 
+7.점수저장
+-
+점수저장을 위해 PlayerPrefs.SetInt("Score"(GetInt에서 가져올 키코드임),score(점수값 우리코드에서는 int score였음))를 사용해 점수를 넣어놓고
+PlayerPrefs.Save();로 저장했습니다.
+그리고 불러올 씬으로 넘어가서 새로운 스크립트EndScore를 생성후 스코어(텍스트매쉬프로)에 붙여줬습니다.
+그 후 유니티엔진.UI를 불러오고 public TextMeshProUGUI를 생성 후
+스타트에 int LoadedScore = PlayerPrefs.GetInt("Score"(SetInt에서 썻던 키코드임),0(기본값임)) 으로 저장한 점수값을 불러오고
+ scoreText.text = LoadedScore.ToString(); 를 통해 글자로 표현했습니다.
+ 쓰고나니 진짜 간단한 코드였는데 생각보다 이해하는데 시간이 많이 걸렸습니다.
+
+
 깃허브 잘못써서 터질뻔
