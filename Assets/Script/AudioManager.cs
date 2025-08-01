@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     static AudioManager audioManager;
-    public AudioClip[] audioClip; // 0: Á¡ÇÁ, 1: 2´ÜÁ¡ÇÁ, 2: ÀëÈ¹µæ , 3: ½ºÅ¸, ÇÏÆ®È¹µæ
+    public AudioClip[] audioClip; // 0: ï¿½ï¿½ï¿½ï¿½, 1: 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2: ï¿½ï¿½È¹ï¿½ï¿½ , 3: ï¿½ï¿½Å¸, ï¿½ï¿½Æ®È¹ï¿½ï¿½
     private AudioSource audioSource;
 
     public static AudioManager Instance
@@ -36,5 +36,28 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioClip[3]);
 
+
+    // BGM ï¿½ï¿½ï¿½ï¿½
+    public void PlayBGM() 
+    {
+        if (!bgmSource.isPlaying)
+            bgmSource.Play();
+    }
+
+    public void StopBGM() //
+    {
+        if (bgmSource.isPlaying)
+            bgmSource.Stop();
+    }
+
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    public void SetBGMVolume(float volume)
+    {
+        bgmSource.volume = volume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
     }
 }
