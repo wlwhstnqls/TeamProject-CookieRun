@@ -30,7 +30,7 @@ public class ItemGem : MonoBehaviour
 
         if (rand < 0.1f)
         {
-            SetGem(GemType.Heart, 0);
+            SetGem(GemType.Yellow, 1); //test를 위해 Heart->Yellow로 바꿔둔상태 테스트끝나면 확률 및 원복
         }
         else if (rand < 0.5f)
         {
@@ -50,7 +50,7 @@ public class ItemGem : MonoBehaviour
         }
         else
         {
-            SetGem(GemType.Yellow, 1);
+            SetGem(GemType.Heart, 0);
         }
 
         return newPosition;
@@ -83,6 +83,7 @@ public class ItemGem : MonoBehaviour
                 if (player != null)
                 {
                     Debug.Log("무적 스타 획득!");
+                    player.StartInvincible();
                     AudioManager.Instance?.PlayStarSound();
                 }
                 break;
@@ -90,6 +91,11 @@ public class ItemGem : MonoBehaviour
             case GemType.Heart:
                 // 목숨 추가 처리 예정
                 Debug.Log("하트 획득! (생명 +1)");
+                Player p = other.GetComponent<Player>();
+                if (p != null)
+                {
+                    p.GainLife(); // 생명 증가 처리
+                }
                 AudioManager.Instance?.PlayStarSound();
                 break;
         }
