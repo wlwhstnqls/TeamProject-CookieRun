@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+    
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI restartText;
+    
 
     void Awake()
     {
@@ -36,9 +38,14 @@ public class UIManager : MonoBehaviour
         {
             scoreText.text = score.ToString(); // 숫자로 점수 표시
         }
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
+        //Debug.Log("점수저장중");
         //else
         //{
         //    Debug.LogWarning("ScoreText가 UIManager에 연결되지 않았습니다.");
         //}
     }
+
+    
 }

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+
+
    
     private int currentScore = 0;
    
 
-    static ScoreManager scoreManager;
+    public static ScoreManager scoreManager;
 
     public static ScoreManager Instance { get { return scoreManager; } }
     // Start is called before the first frame update
@@ -37,5 +39,11 @@ public class ScoreManager : MonoBehaviour
         if (UIManager.Instance != null)
             UIManager.Instance.UpdateScore(currentScore);
     }
-   
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", currentScore);
+        PlayerPrefs.Save();
+        Debug.Log("점수저장중");
+    }
+
 }
