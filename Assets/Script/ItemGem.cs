@@ -83,6 +83,7 @@ public class ItemGem : MonoBehaviour
                 if (player != null)
                 {
                     Debug.Log("무적 스타 획득!");
+                    player.StartGodMode();
                     AudioManager.Instance?.PlayStarSound();
                 }
                 break;
@@ -90,6 +91,11 @@ public class ItemGem : MonoBehaviour
             case GemType.Heart:
                 // 목숨 추가 처리 예정
                 Debug.Log("하트 획득! (생명 +1)");
+                Player p = other.GetComponent<Player>();
+                if (p != null)
+                {
+                    p.GainLife(); // 생명 증가 처리
+                }
                 AudioManager.Instance?.PlayStarSound();
                 break;
         }
