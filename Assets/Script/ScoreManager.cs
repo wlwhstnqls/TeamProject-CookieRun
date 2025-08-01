@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int currentScore = 0; 
+   
+    private int currentScore = 0;
+   
 
     static ScoreManager scoreManager;
 
@@ -14,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     {
         scoreManager = this;
     }
+    
 
     public void AddScore(int score)
     {
@@ -33,4 +36,5 @@ public class ScoreManager : MonoBehaviour
         if (UIManager.Instance != null)
             UIManager.Instance.UpdateScore(currentScore);
     }
+   
 }

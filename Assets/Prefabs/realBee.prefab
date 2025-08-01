@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4104988899311012141}
   m_Layer: 0
   m_Name: Bee
-  m_TagString: SkyEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3506868634020950753}
   m_Layer: 0
   m_Name: realBee
-  m_TagString: SkyEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

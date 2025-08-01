@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1254061903477641994}
   m_Layer: 0
   m_Name: Frog
-  m_TagString: GroundEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,9 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 4
   isJumping: 0
-  minHeight: -0.3
-  maxHeight: 4
-  widthPadding: 3
 --- !u!50 &5766523098288471031
 Rigidbody2D:
   serializedVersion: 4
