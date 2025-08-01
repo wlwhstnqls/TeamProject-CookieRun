@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
             bgmSource.Stop();
     }
 
-    // 볼륨 조절 (UI에서 연결)
+    // 볼륨 조절 (UI에서 연결, 슬라이드 조절기능)
     public void SetBGMVolume(float volume)
     {
         bgmSource.volume = volume;
