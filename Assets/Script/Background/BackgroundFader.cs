@@ -6,20 +6,11 @@ public class BackgroundFader : MonoBehaviour
     private SpriteRenderer[] backgroundRenderers;  // 배경에 붙은 여러 스프라이트를 담을 배열
 
     public Color dayColor = Color.white; //원래색상
-    public Color nightColor = new Color(0.2f, 0.2f, 0.2f); // 회색으로 어두워진 느낌줌
-
-    // 카메라 배경색용 색상 (r46 g204 b112 기준)
-    public Color cameraDayColor = new Color(46f / 255f, 204f / 255f, 112f / 255f);
-    public Color cameraNightColor = new Color(0.05f, 0.2f, 0.1f); // 어두운 녹색 톤
+    public Color nightColor = new Color(0.5f, 0.5f, 0.5f); // 회색으로 어두워진 느낌줌
 
     // 각 맵별로 페이드 진행 정도를 따로 관리
     private float[] fadeProgresses;
     private bool[] isFadingOut; // true면 어두워지는 중, false면 밝아지는 중
-
-    private float cameraFadeProgress = 1f; // 배경 스프라이트 각각의 페이드 진행 정도 저장 (0~1)
-    private bool cameraFadingOut = true;  // 각 스프라이트가 어두워지는 중인지 밝아지는 중인지 상태 저장 (true면 어두워지는 중)
-
-    private Camera mainCam;
 
     void Start()
     {
@@ -30,10 +21,6 @@ public class BackgroundFader : MonoBehaviour
         //처음에는 모두 완전히 밝은 상태(1f)로 초기화
         for (int i = 0; i < fadeProgresses.Length; i++)
             fadeProgresses[i] = 1f;
-
-        mainCam = Camera.main;
-        if (mainCam != null)
-            mainCam.backgroundColor = cameraDayColor; // 초기 카메라 배경색 설정
     }
 
     void Update()
@@ -70,27 +57,7 @@ public class BackgroundFader : MonoBehaviour
             Color currentColor = Color.Lerp(nightColor, dayColor, fadeProgresses[i]);
             backgroundRenderers[i].color = currentColor;
         }
-
-        if (mainCam != null)
-        {
-            if (cameraFadingOut)
-            {
-                cameraFadeProgress -= Time.deltaTime * 0.01f;
-                cameraFadeProgress = Mathf.Clamp01(cameraFadeProgress);
-
-                if (cameraFadeProgress <= 0f)
-                    cameraFadingOut = false;
-            }
-            else
-            {
-                cameraFadeProgress += Time.deltaTime * 0.01f;
-                cameraFadeProgress = Mathf.Clamp01(cameraFadeProgress);
-
-                if (cameraFadeProgress >= 1f)
-                    cameraFadingOut = true;
-            }
-            mainCam.backgroundColor = Color.Lerp(cameraNightColor, cameraDayColor, cameraFadeProgress);
-        }
+        
     }
 
 
