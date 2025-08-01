@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
         if (time >= 10.0f)
         { 
-            speed += 1f;
+            speed += 0.2f;
             time = 0f;
             return;
         }
