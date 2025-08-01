@@ -2664,7 +2664,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7566,8 +7566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayColor: {r: 1, g: 1, b: 1, a: 1}
   nightColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-  cameraDayColor: {r: 0.18039216, g: 0.8, b: 0.4392157, a: 1}
-  cameraNightColor: {r: 0.05, g: 0.2, b: 0.1, a: 1}
 --- !u!1 &1161941238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3885621957682543024, guid: 7aa8e68d2968c92439689ce88dbe907f, type: 3}
