@@ -11,11 +11,19 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     public void UpdateScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString(); // 숫자로 점수 표시
+        }
+        else
+        {
+            Debug.LogWarning("ScoreText가 UIManager에 연결되지 않았습니다.");
+        }
     }
 }
