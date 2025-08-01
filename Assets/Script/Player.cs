@@ -18,10 +18,10 @@ public class Player : MonoBehaviour
     float time = 0f;
 
     public int life = 3; //해당 라이프 3개
-    public Hearts heartsUI;
+    public Hearts heartsUI; //하트 UI 스크립트 연결(생명 수 표시용)
 
     public bool godMode = false; // 테스트 끝나고 꼭 private으로 바꿔주세요!!
-    private float godModeDuration = 2.0f;
+    private float godModeDuration = 2.0f; //2초무적 테스트해보고 늘려도됩니다.
     private float godModeTimer = 0f;
 
 
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         // GodMode 타이머
         if (godMode)
         {
+            // 시간이 다 되면 무적 해제
             godModeTimer -= Time.deltaTime;
             if (godModeTimer <= 0f)
             {
@@ -113,18 +114,20 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            // 무적 상태면 충돌 무시 
             if (godMode)
             {
                 Debug.Log("GodMode 활성화 중, 장애물 통과!");
-                return; // 충돌 무시
+                return; 
             }
 
-            life--;
+            life--; // 목숨 1 감소
+
             heartsUI?.LoseHeart(life);
 
             if (life <= 0)
             {
-                Die();
+                Die(); //IsDead는  상태확인용, Die는 죽음을 의미합니다.
             }
             else
             {
@@ -132,7 +135,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void GainLife()
+    public void GainLife() // 목숨 회복 함수 (하트 아이템 획득 시 호출)
     {
         if (life < 3)
         {
@@ -144,22 +147,22 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void StartGodMode()
+    public void StartGodMode() // 무적 상태 시작 함수
     {
         godMode = true;
         godModeTimer = godModeDuration;
 
         Debug.Log("GodMode 활성화됨 (무적 상태)");
-        // 이펙트나 깜빡임 애니메이션 추가해야함
+        // 이펙트나 깜빡임 애니메이션 추가해야함 
         // animator.SetBool("IsGodMode", true); 필요시 활성화
     }
 
-    private void Die()
+    private void Die() // 플레이어 사망 처리 함수
     {
-        if (isDead) return;
+        if (isDead) return;  // 이미 사망 처리 됐으면 중복 실행 방지
 
         isDead = true;
         animator.SetTrigger("IsDead");
-        GameManager.Instance.GameOver();
+        GameManager.Instance.GameOver(); // 게임 매니저에 게임 오버 알림 그래야 고투엔드씬호출됩니다.
     }
 }
