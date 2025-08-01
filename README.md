@@ -23,3 +23,7 @@ BackGround , Ground 스프라이트를 활용해 프리펩을 만들고 묶어�
 BgLooper라는 가상의 막대를 통해 맵과 충돌시 맵의 끝으로 이동하여 맵이 루프되도록 구현했습니다.
 
 깃허브 잘못써서 터질뻔
+
+배경음악다운로드 출저(출저작성시 무료 가능)
+"Happy Adventure" by Fesliyan Studios  
+https://www.fesliyanstudios.com/play-music/6393
