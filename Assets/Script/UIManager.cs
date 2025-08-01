@@ -20,16 +20,16 @@ public class UIManager : MonoBehaviour
         if (restartText != null)
             restartText.gameObject.SetActive(true);
     }
-    void Update()
-    {
-        // 클릭하면 언제든 게임 재시작 가능
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //Debug.Log("마우스 클릭 감지되면 씬 리로드");
-        }
+    //void Update()
+    //{
+    //    // 클릭하면 언제든 게임 재시작 가능
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //        //Debug.Log("마우스 클릭 감지되면 씬 리로드");
+    //    }
 
-    }
+    //}
     public void UpdateScore(int score)
     {
         if (scoreText != null)

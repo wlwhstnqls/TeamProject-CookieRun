@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    
     Animator animator = null;
     Rigidbody2D rb = null;
     CircleCollider2D circleCollider = null;
@@ -14,8 +16,9 @@ public class Player : MonoBehaviour
     public float jumpForce = 8f;
     public bool isJumping = false;
     float time = 0f;
+   
 
-     int JumpCount = 0;
+    int JumpCount = 0;
      int MaxJumpCount = 2;
 
     void Start()
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
         Camera.main.GetComponent<FollowCamera>().player = transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         Time.timeScale = 1f;
     }
 
@@ -49,7 +53,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Isground", false);
         }
         time += Time.deltaTime;
-
+       
         if (time >= 10.0f)
         { 
             speed += 0.2f;
@@ -85,7 +89,19 @@ public class Player : MonoBehaviour
     bool IsGrounded()
     {
         return Physics2D.OverlapCircle(transform.position,0.64f, LayerMask.GetMask("Ground"));
-    }  
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+      
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetTrigger("IsDead");
+            GameManager.Instance.GameOver();
+           
+        }
+        
+    }
+    
 
     
 }

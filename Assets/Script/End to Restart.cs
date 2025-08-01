@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class EndtoRestart : MonoBehaviour
 {
     // Start is called before the first frame update
-   
 
+    public void Awake()
+    {
+        Time.timeScale = 1f;
+    }
     public void StartButton()
     {
         SceneManager.LoadScene("SampleScene"); 
