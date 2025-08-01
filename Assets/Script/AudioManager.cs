@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour
    
     public void JumpSound(int idx)
     {
-
         audioSource.PlayOneShot(audioClip[idx]);
+
 
     }
 
@@ -35,5 +35,6 @@ public class AudioManager : MonoBehaviour
     public void PlayStarSound()
     {
         audioSource.PlayOneShot(audioClip[3]);
+
     }
 }
