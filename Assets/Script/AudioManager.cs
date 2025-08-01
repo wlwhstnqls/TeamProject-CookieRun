@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
             // BGM 세팅
             bgmSource.clip = bgmClip;
             bgmSource.loop = true;
-            bgmSource.volume = 0.5f;
+            bgmSource.volume = 0.2f;
 
             // 게임 시작 시 자동 재생
             if (!bgmSource.isPlaying)
