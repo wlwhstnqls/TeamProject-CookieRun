@@ -46,3 +46,11 @@ https://www.fesliyanstudios.com/play-music/6393
    현재 점수를 표시할 UI 텍스트 
    - 클릭 시 씬을 리로드(게임 재시작)하는 기능 구현
    클릭하면 재시작 메시지를 표시할 UI 텍스트
+
+hearats 추가
+애니메이션을통해 트리거 설정 후 Heart <> LostHeart 서로 트랜지션하여 반복구조를 만듦
+OnCollisionEnter2D를 통해 Enemy Tag와 닿았을때 Life를 감소시킴
+그리고 heartsUI.LoseHeart(life)를 호출해 체력다는 애니메이션실행
+
+무적(invincible) 추가
+Enemy에 충돌시 무적시간을 넣어줘 연속충돌을 못하게 방지
