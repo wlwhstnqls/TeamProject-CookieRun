@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +7,14 @@ public class Bee : MonoBehaviour
     Animator animator = null;
     Rigidbody2D rb = null;
     float RandomFall = 0f;
-    public float minHeight = -0.3f;    // Àå¾Ö¹°ÀÌ ¹èÄ¡µÉ ÃÖ¼Ò ³ôÀÌ (¹Ù´Ú ±âÁØ)
-    public float maxHeight = 4f;       // Àå¾Ö¹°ÀÌ ·£´ıÀ¸·Î ¹èÄ¡µÉ ÃÖ´ë ³ôÀÌ
-    public float widthPadding = 3f;    // Àå¾Ö¹° °£°İ (xÃà °Å¸®)
+    public float minHeight = -0.3f;    // ì¥ì• ë¬¼ì´ ë°°ì¹˜ë  ìµœì†Œ ë†’ì´ (ë°”ë‹¥ ê¸°ì¤€)
+    public float maxHeight = 4f;       // ì¥ì• ë¬¼ì´ ëœë¤ìœ¼ë¡œ ë°°ì¹˜ë  ìµœëŒ€ ë†’ì´
+    public float widthPadding = 3f;    // ì¥ì• ë¬¼ ê°„ê²© (xì¶• ê±°ë¦¬)
 
     private float minWidthPadding = 3f;
     private float maxWidthPadding = 5f;
 
-    public Sprite[] enemySprites;   // Àå¾Ö¹° ½ºÇÁ¶óÀÌÆ® ·£´ı Àû¿ë¿ë
+    public Sprite[] enemySprites;   // ì¥ì• ë¬¼ ìŠ¤í”„ë¼ì´íŠ¸ ëœë¤ ì ìš©ìš©
     private SpriteRenderer sr;
 
     void Awake()
@@ -36,10 +36,10 @@ public class Bee : MonoBehaviour
             float randomXOffset = Random.Range(minWidthPadding, maxWidthPadding);
             float randomY = minHeight;
 
-            // ÅÂ±×¿¡ µû¶ó y À§Ä¡ ´Ù¸£°Ô ¼³Á¤
+            // íƒœê·¸ì— ë”°ë¼ y ìœ„ì¹˜ ë‹¤ë¥´ê²Œ ì„¤ì •
             if (CompareTag("SkyEnemy"))
             {
-                randomY = Random.Range(1.5f, maxHeight);  // ÇÏ´Ã ÀûÀº ³ôÀÌ ·£´ı
+                randomY = Random.Range(1.5f, maxHeight);  // í•˜ëŠ˜ ì ì€ ë†’ì´ ëœë¤
             }
            
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,8 +18,8 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int score)
     {
         currentScore += score;
-        //Debug.Log($"[È¹µæ] +{score}Á¡ | ÇöÀç Á¡¼ö: {currentScore}");
-        if (UIManager.Instance != null)  // UI Á¡¼ö È£Ãâ
+        //Debug.Log($"[íšë“] +{score}ì  | í˜„ì¬ ì ìˆ˜: {currentScore}");
+        if (UIManager.Instance != null)  // UI ì ìˆ˜ í˜¸ì¶œ
         UIManager.Instance.UpdateScore(currentScore);
     }
     public int GetScore()

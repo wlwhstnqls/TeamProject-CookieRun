@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class GameOverUI : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("Àç½ÃÀÛ");       
+        Debug.Log("ìž¬ì‹œìž‘");       
     }
   
     

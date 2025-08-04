@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,17 +17,17 @@ public class UIManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-        // Àç½ÃÀÛ ÅØ½ºÆ®°¡ Ç×»ó º¸ÀÌµµ·Ï ¼³Á¤ °ÔÀÓ¿À¹ö ·ÎÁ÷ ±¸ÇöµÇ¸é ±×¶§ ¼öÁ¤
+        // ì¬ì‹œì‘ í…ìŠ¤íŠ¸ê°€ í•­ìƒ ë³´ì´ë„ë¡ ì„¤ì • ê²Œì„ì˜¤ë²„ ë¡œì§ êµ¬í˜„ë˜ë©´ ê·¸ë•Œ ìˆ˜ì •
         if (restartText != null)
             restartText.gameObject.SetActive(true);
     }
     //void Update()
     //{
-    //    // Å¬¸¯ÇÏ¸é ¾ğÁ¦µç °ÔÀÓ Àç½ÃÀÛ °¡´É
+    //    // í´ë¦­í•˜ë©´ ì–¸ì œë“  ê²Œì„ ì¬ì‹œì‘ ê°€ëŠ¥
     //    if (Input.GetMouseButtonDown(0))
     //    {
     //        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //        //Debug.Log("¸¶¿ì½º Å¬¸¯ °¨ÁöµÇ¸é ¾À ¸®·Îµå");
+    //        //Debug.Log("ë§ˆìš°ìŠ¤ í´ë¦­ ê°ì§€ë˜ë©´ ì”¬ ë¦¬ë¡œë“œ");
     //    }
 
     //}
@@ -35,14 +35,14 @@ public class UIManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = score.ToString(); // ¼ıÀÚ·Î Á¡¼ö Ç¥½Ã
+            scoreText.text = score.ToString(); // ìˆ«ìë¡œ ì ìˆ˜ í‘œì‹œ
         }
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.Save();
-        //Debug.Log("Á¡¼öÀúÀåÁß");
+        //Debug.Log("ì ìˆ˜ì €ì¥ì¤‘");
         //else
         //{
-        //    Debug.LogWarning("ScoreText°¡ UIManager¿¡ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+        //    Debug.LogWarning("ScoreTextê°€ UIManagerì— ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
         //}
     }
 
