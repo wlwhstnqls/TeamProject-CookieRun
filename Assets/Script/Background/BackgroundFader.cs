@@ -53,11 +53,9 @@ public class BackgroundFader : MonoBehaviour
                     isFadingOut[i] = true; // 어두워지기로 전환
                 }
             }
-
             Color currentColor = Color.Lerp(nightColor, dayColor, fadeProgresses[i]);
             backgroundRenderers[i].color = currentColor;
-        }
-        
+        }        
     }
 
 

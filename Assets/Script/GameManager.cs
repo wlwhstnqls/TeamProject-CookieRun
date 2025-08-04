@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 
     public void GotoEndScene()
     {
-        SceneManager.LoadScene("RealEndScene");
-        
+        SceneManager.LoadScene("RealEndScene");        
     }
 }
