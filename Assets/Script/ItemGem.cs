@@ -28,29 +28,29 @@ public class ItemGem : MonoBehaviour
 
         float rand = Random.Range(0f, 100f);
 
-        if (rand < 0.1f)
+        if (rand < 5f)
         {
-            SetGem(GemType.Yellow, 1); //test를 위해 Heart->Yellow로 바꿔둔상태 테스트끝나면 확률 및 원복
+            SetGem(GemType.Heart, 5); //test를 위해 Heart->Yellow로 바꿔둔상태 테스트끝나면 확률 및 원복
         }
-        else if (rand < 0.5f)
+        else if (rand < 10f)
         {
             SetGem(GemType.Star, 0);
         }
-        else if (rand < 1.0f)
+        else if (rand < 5f)
         {
             SetGem(GemType.Blue, 500);
         }
-        else if (rand < 2.0f)
+        else if (rand < 10f)
         {
             SetGem(GemType.Green, 100);
         }
-        else if (rand < 10.0f)
+        else if (rand < 25.0f)
         {
             SetGem(GemType.Red, 5);
         }
         else
         {
-            SetGem(GemType.Heart, 0);
+            SetGem(GemType.Yellow, 1);
         }
 
         return newPosition;
