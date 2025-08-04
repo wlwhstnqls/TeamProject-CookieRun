@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public float minHeight = -0.3f;    // Àå¾Ö¹°ÀÌ ¹èÄ¡µÉ ÃÖ¼Ò ³ôÀÌ (¹Ù´Ú ±âÁØ)
-    public float maxHeight = 4f;       // Àå¾Ö¹°ÀÌ ·£´ıÀ¸·Î ¹èÄ¡µÉ ÃÖ´ë ³ôÀÌ
-    public float widthPadding = 3f;    // Àå¾Ö¹° °£°İ (xÃà °Å¸®)
+    public float minHeight = -0.3f;    // ì¥ì• ë¬¼ì´ ë°°ì¹˜ë  ìµœì†Œ ë†’ì´ (ë°”ë‹¥ ê¸°ì¤€)
+    public float maxHeight = 4f;       // ì¥ì• ë¬¼ì´ ëœë¤ìœ¼ë¡œ ë°°ì¹˜ë  ìµœëŒ€ ë†’ì´
+    public float widthPadding = 3f;    // ì¥ì• ë¬¼ ê°„ê²© (xì¶• ê±°ë¦¬)
 
     private float minWidthPadding = 3f;
     private float maxWidthPadding = 5f;
