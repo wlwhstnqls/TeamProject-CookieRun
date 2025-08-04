@@ -145,10 +145,6 @@ public class Player : MonoBehaviour
             {
                 StartInvincible(); // 무적 시작
             }
-
-            {
-                animator.SetTrigger("IsBlink");
-            }
         }
     }
     public void GainLife() // 목숨 회복 함수 (하트 아이템 획득 시 호출)

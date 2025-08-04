@@ -66,8 +66,6 @@ public class BgLooper : MonoBehaviour
         if (difficultyTimer >= spawnInterval)
         {
             difficultyTimer = 0f;
-            SpawnNewenemy();
-
             spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - intervalDecreaseRate);
         }
     }
@@ -106,19 +104,6 @@ public class BgLooper : MonoBehaviour
         }
     }
 
-    private void SpawnNewenemy()
-    {
-        if (enemyPrefab == null)
-        {
-            Debug.LogWarning("enemyPrefab이 할당되지 않아 장애물을 생성하지 않습니다.");
-            return; // 생성하지 않고 그냥 종료
-        }
-        enemy newenemy = Instantiate(enemyPrefab);
-        enemyLastPosition = newenemy.SetRandomPlace(enemyLastPosition, enemyCount);
-        activeenemys.Add(newenemy);
-        enemyCount++;
-        //Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + enemyCount);
-    }
     public Vector3 RepositionGem(ItemGem gem)
     {
         Vector3 newPos = new Vector3(gemLastPosition.x + gemDistance, Random.Range(gem.minHeight, gem.maxHeight), 0f);
