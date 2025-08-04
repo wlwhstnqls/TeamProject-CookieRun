@@ -6,7 +6,7 @@ public class ItemGem : MonoBehaviour
 {
     public float minHeight = 0f;       // 최소 y 위치
     public float maxHeight = 2f;       // 최대 y 위치
-    public float distance = 4f;        // 이전 오브젝트보다 얼마나 떨어질지
+    public float distance = 0.1f;        // 이전 오브젝트보다 얼마나 떨어질지
 
     public Sprite[] gemSprites;       // 0=Yellow, 1=Red, 2=Green, 3=Blue, 4=Star, 5=Heart 등 더추가할게있는지?
     private SpriteRenderer sr;
