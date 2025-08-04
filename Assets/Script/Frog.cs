@@ -5,20 +5,12 @@ using UnityEngine;
 public class Frog : MonoBehaviour
 {
     Animator animator = null;
-    Rigidbody2D rb = null;
-    
+    Rigidbody2D rb = null;    
 
     public float jumpForce = 4f;
     public bool isJumping = false;
     float time = 0f;
-    float RandomJump = 0f;
-   
-
-  
-   
-    // Start is called before the first frame update
-
-  
+    float RandomJump = 0f;    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,18 +21,13 @@ public class Frog : MonoBehaviour
    
     // Update is called once per frame
     void Update()
-    {
-       
+    {       
         time += Time.deltaTime;
         if (time >= RandomJump)
         {
-            isJumping = true;
-                      
-            animator.SetTrigger("JumpTrig");
-                          
-                         
-            time = 0f;
-                        
+            isJumping = true;                      
+            animator.SetTrigger("JumpTrig");                         
+            time = 0f;                        
             return;
         }
         else
@@ -54,8 +41,7 @@ public class Frog : MonoBehaviour
         {
             velocity.y += jumpForce;
             isJumping = false;
-        }
-        
+        }        
         rb.velocity = velocity;
     }
 

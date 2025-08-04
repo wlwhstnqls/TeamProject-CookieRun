@@ -11,7 +11,6 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource sfxSource;
     private AudioSource bgmSource;
-
     public static AudioManager Instance => audioManager;
 
     private void Awake()

@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-
         // 재시작 텍스트가 항상 보이도록 설정 게임오버 로직 구현되면 그때 수정
         if (restartText != null)
             restartText.gameObject.SetActive(true);

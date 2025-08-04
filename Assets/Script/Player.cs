@@ -24,9 +24,7 @@ public class Player : MonoBehaviour
     public bool invincible = false; // 무적 상태 테스트끝나고 private로 바꿔주세요
     private float invincibleDuration = 2.0f; // 무적 지속시간
     private float invincibleTimer = 0f;
-
-   
-
+      
     public bool GodMode = false; // Inspector 체크박스 on시 영구무적
 
     int JumpCount = 0;
@@ -45,13 +43,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (JumpCount == MaxJumpCount)
                 return;
             isJumping = true;
-
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetMouseButton(1))
         {
@@ -90,8 +86,6 @@ public class Player : MonoBehaviour
                 invincible = false;
                 Debug.Log("무적 해제됨 (invincible = false)");
                 spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
-
-
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
             }
         }
@@ -132,8 +126,7 @@ public class Player : MonoBehaviour
         {
             // 무적 상태면 충돌 무시 
             if (invincible == true)
-            {
-                
+            {                
                 Debug.Log("무적 활성화 중, 장애물 통과!");
                 return; 
             }
@@ -159,8 +152,7 @@ public class Player : MonoBehaviour
             life++;
             if (heartsUI != null)
             {
-                heartsUI.RecoverHeart(life); // 여기서 RecoverHeart 함수 호출, 내부 트리거는 "Heart"
-
+               heartsUI.RecoverHeart(life); // 여기서 RecoverHeart 함수 호출, 내부 트리거는 "Heart"
             }
         }
     }
@@ -168,21 +160,16 @@ public class Player : MonoBehaviour
     {
         invincible = true;
         invincibleTimer = invincibleDuration;
-        
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
-        
-       
+        spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);              
         Debug.Log("무적 시작됨 (invincible = true)");
         // 이펙트나 깜빡임 애니메이션 추가해야함 
         // animator.SetBool("IsGodMode", true); 필요시 활성화
-
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
     }
 
     private void Die() // 플레이어 사망 처리 함수
     {
         if (isDead) return;  // 이미 사망 처리 됐으면 중복 실행 방지
-
         isDead = true;
         animator.SetTrigger("IsDead");
         GameManager.Instance.GameOver(); // 게임 매니저에 게임 오버 알림 그래야 고투엔드씬호출됩니다.

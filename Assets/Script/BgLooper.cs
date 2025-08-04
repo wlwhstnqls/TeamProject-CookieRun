@@ -28,7 +28,6 @@ public class BgLooper : MonoBehaviour
         Instance = this; //자기자신인스턴스화
     }
 
-
     void Start()
     {
         enemy[] enemys = GameObject.FindObjectsOfType<enemy>();

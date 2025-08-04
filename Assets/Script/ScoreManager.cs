@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
-{
-
-
-   
+{      
     private int currentScore = 0;
-   
 
     public static ScoreManager scoreManager;
 
@@ -19,14 +15,12 @@ public class ScoreManager : MonoBehaviour
         scoreManager = this;
     }
     
-
     public void AddScore(int score)
     {
         currentScore += score;
         //Debug.Log($"[획득] +{score}점 | 현재 점수: {currentScore}");
-      
         if (UIManager.Instance != null)  // UI 점수 호출
-            UIManager.Instance.UpdateScore(currentScore);
+        UIManager.Instance.UpdateScore(currentScore);
     }
     public int GetScore()
     {
