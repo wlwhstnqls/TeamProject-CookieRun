@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI restartText;
-    public TextMeshProUGUI achievementText;
 
 
     void Awake()
@@ -22,16 +21,6 @@ public class UIManager : MonoBehaviour
         if (restartText != null)
             restartText.gameObject.SetActive(true);
     }
-    //void Update()
-    //{
-    //    // 클릭하면 언제든 게임 재시작 가능
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //        //Debug.Log("마우스 클릭 감지되면 씬 리로드");
-    //    }
-
-    //}
     public void UpdateScore(int score)
     {
         if (scoreText != null)
@@ -40,29 +29,5 @@ public class UIManager : MonoBehaviour
         }
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.Save();
-        //Debug.Log("점수저장중");
-        //else
-        //{
-        //    Debug.LogWarning("ScoreText가 UIManager에 연결되지 않았습니다.");
-        //}
     }
-    public void ShowAchievement(string achievementName)
-    {
-        if (achievementText != null)
-        {
-            achievementText.text = $"업적 달성!\n{achievementName}";
-            achievementText.gameObject.SetActive(true);
-
-            // 2초 후 자동 숨김
-            Invoke("HideAchievement", 2f);
-        }
-    }
-
-    void HideAchievement()
-    {
-        if (achievementText != null)
-            achievementText.gameObject.SetActive(false);
-    }
-
-
 }

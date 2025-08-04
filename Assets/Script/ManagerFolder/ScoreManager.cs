@@ -21,9 +21,6 @@ public class ScoreManager : MonoBehaviour
         //Debug.Log($"[획득] +{score}점 | 현재 점수: {currentScore}");
         if (UIManager.Instance != null)  // UI 점수 호출
         UIManager.Instance.UpdateScore(currentScore);
-
-        if (Achievement.Instance != null)
-            Achievement.Instance.CheckScoreAchievements(currentScore);
     }
     public int GetScore()
     {
