@@ -73,7 +73,12 @@ public class Player : MonoBehaviour
         }
         if (GodMode)
         {
-            invincible = true;
+            if (!invincible)
+            {
+                invincible = true;
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+                spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f); // 깜빡임 효과 1회라도 주고 싶다면
+            }
             return; // 테스트 중에는 아래 로직 무시
         }
         // 무적 타이머
@@ -144,10 +149,6 @@ public class Player : MonoBehaviour
             else
             {
                 StartInvincible(); // 무적 시작
-            }
-
-            {
-                animator.SetTrigger("IsBlink");
             }
         }
     }
