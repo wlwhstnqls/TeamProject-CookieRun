@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Animator animator = null;
     Rigidbody2D rb = null;
     CircleCollider2D circleCollider = null;
+    SpriteRenderer spriteRenderer = null;
 
     public float speed = 5f;
     public bool isDead = false;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
     private float invincibleDuration = 2.0f; // 무적 지속시간
     private float invincibleTimer = 0f;
 
+   
+
     public bool GodMode = false; // Inspector 체크박스 on시 영구무적
 
     int JumpCount = 0;
@@ -31,7 +34,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Camera.main.GetComponent<FollowCamera>().player = transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -81,6 +84,8 @@ public class Player : MonoBehaviour
             {
                 invincible = false;
                 Debug.Log("무적 해제됨 (invincible = false)");
+                spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+
 
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
             }
@@ -121,8 +126,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // 무적 상태면 충돌 무시 
-            if (invincible)
+            if (invincible == true)
             {
+                
                 Debug.Log("무적 활성화 중, 장애물 통과!");
                 return; 
             }
@@ -161,7 +167,10 @@ public class Player : MonoBehaviour
     {
         invincible = true;
         invincibleTimer = invincibleDuration;
-
+        
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+        
+       
         Debug.Log("무적 시작됨 (invincible = true)");
         // 이펙트나 깜빡임 애니메이션 추가해야함 
         // animator.SetBool("IsGodMode", true); 필요시 활성화

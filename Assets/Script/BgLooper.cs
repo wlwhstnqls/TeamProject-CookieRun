@@ -74,7 +74,7 @@ public class BgLooper : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("충돌 감지: " + collision.name);
+        //Debug.Log("충돌 감지: " + collision.name);
         if (collision.CompareTag("BackGround") || collision.CompareTag("Ground"))
         {
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
@@ -87,7 +87,7 @@ public class BgLooper : MonoBehaviour
         enemy enemy = collision.GetComponentInParent<enemy>();
         if (enemy) 
         {
-            Debug.Log("장애물 충돌 감지: " + enemy.name);
+            //Debug.Log("장애물 충돌 감지: " + enemy.name);
             enemyLastPosition = enemy.SetRandomPlace(enemyLastPosition, enemyCount);
         }
 
@@ -117,7 +117,7 @@ public class BgLooper : MonoBehaviour
         enemyLastPosition = newenemy.SetRandomPlace(enemyLastPosition, enemyCount);
         activeenemys.Add(newenemy);
         enemyCount++;
-        Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + enemyCount);
+        //Debug.Log("새 장애물 생성됨! 현재 장애물 수: " + enemyCount);
     }
     public Vector3 RepositionGem(ItemGem gem)
     {
