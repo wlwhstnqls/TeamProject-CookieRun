@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void GameOver() 
+    public void GameOver()
     {
         Invoke("TimeStop", 1.5f);
     }
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void GotoEndScene()
     {
-        SceneManager.LoadScene("RealEndScene");        
+        SceneManager.LoadScene("RealEndScene");
     }
+   
 }
