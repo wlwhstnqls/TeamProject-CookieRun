@@ -6281,7 +6281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   isDead: 0
-  jumpForce: 5
+  jumpForce: 4
   isJumping: 0
   life: 3
   heartsUI: {fileID: 113822281}
@@ -6319,9 +6319,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
-  m_Radius: 0.64
+  m_Radius: 0.44
 --- !u!1001 &960470653
 PrefabInstance:
   m_ObjectHideFlags: 0
